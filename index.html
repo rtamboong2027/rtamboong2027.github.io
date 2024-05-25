@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OnScreenDepot - Shop Online & OnScreen! </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="index.css">
+    <script>
+        var cust_order = [];
+        
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const suggestions = ['Kids', 'Shipping', 'Men', 'Women', 'Appliances', 'Gadgets'];
+        searchInput.addEventListener('input', function() {
+            const searchText = this.value.toLowerCase();
+            const matchedSuggestions = suggestions.filter(suggestion =>
+                suggestion.toLowerCase().includes(searchText)
+            );
+            displaySuggestions(matchedSuggestions);
+        });
+        function displaySuggestions(suggestions) {
+            searchResults.innerHTML = '';
+            if (suggestions.length === 0) {
+                searchResults.style.display = 'none';
+                return;
+            }
+            suggestions.forEach(suggestion => {
+                const li = document.createElement('li');
+                li.textContent = suggestion;
+                li.addEventListener('click', function() {
+                    searchInput.value = suggestion;
+                    searchResults.style.display = 'none';
+                });
+                searchResults.appendChild(li);
+            });
+            searchResults.style.display = 'block';
+        }
+
+        function freeShipping()
+        {
+            document.getElementById("freeshippingc").style.display = "flex";
+        }
+        function forKids()
+        {
+            document.getElementById("kidsc").style.display = "flex";
+        }
+        function forWomen()
+        {
+            document.getElementById("womenc").style.display = "flex";
+        }
+        function forMen()
+        {
+            document.getElementById("menc").style.display = "flex";
+        }
+        function homeAppliances()
+        {
+            document.getElementById("happsc").style.display = "flex";
+        }
+
+        function additem(cust_order, prod_name, prod_price)
+        {
+
+            console.log(prod_name);
+            console.log(prod_price);
+
+            let item = new Object();
+            item.prod_name = prod_name;
+            item.prod_price = prod_price;
+
+            console.log("ITEM CHECKER");
+            console.log(item);
+
+            cust_order.push(item);
+            console.log("ARRAY CHECKER:");
+            console.log(cust_order);
+
+            document.getElementById("orderstrng").value = JSON.stringify(cust_order);
+
+            cartlist(item);
+
+        }        
+
+        function cartlist() {
+        var cart = document.getElementById("cartitmlist");
+        cart.innerHTML = "";
+
+        cust_order.forEach
+        ((object, index) =>
+            {
+            var itmcont = document.createElement("li");
+            var citm= document.createElement("div");
+            var citmnam = document.createElement("div");
+            var prcremv = document.createElement("div");
+            const rmv = document.createElement("button");
+            citm.className = "itemcont"
+            citmnam.textContent = object.prod_name;
+            citmnam.className = "Itmnam";
+            prcremv.className = "botcitm"
+            prcremv.textContent = "Php " + object.prod_price + "";
+            rmv.className = "btn-rmv"
+            rmv.textContent = "Remove Item";
+            rmv.onclick = () => {remove(index);};
+
+            console.log(":)");
+
+            cart.appendChild(itmcont);
+            itmcont.appendChild(citm);
+            citm.appendChild(citmnam);
+            citm.appendChild(prcremv);
+            prcremv.appendChild(rmv);
+            }
+        );
+        }
+
+        function remove(index)
+        {
+            cust_order.splice(index, 1);
+            cartlist();
+        }
+        
+
+        
+    </script>
+</head>
+<body>
+    <div class="container-fluid all">
+    <div class="stcky">
+        <nav class="navbar navbar-dark navbar-expand-lg nav nav-underline pb-2">
+            <div class="container">
+                <a class="navbar-brand" style="font-size: 210%;" href="index.html">OnScreenDepot</a>
+                <button class="navbar-toggler ms-auto mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon tglb"></span>
+                </button>
+                <a class="btn btn-outline-warning d-lg-none crtb" href="#cartdeliv">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                      </svg>
+                </a>
+                <div class="collapse navbar-collapse container-fluid mininavbar" id="navbarNav">
+                    <ul class="navbar-nav ms-auto me-lg-5 fs-5">
+                        <li class="nav-item me-5">
+                            <a href="index.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item me-5">
+                            <a href="aboutthecompany.html" class="nav-link">About</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex ms-lg-auto me-3 pt-2"> 
+                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <ul id="searchResults"></ul>
+                        <button class="btn btn-outline-warning me-2 srchb" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                              </svg>
+                        </button>
+                    </form>
+                    
+                    <ul class="navbar-nav d-none d-lg-flex">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-warning crtb" href="#cartdeliv">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                  </svg>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid text-center mt-3">
+            <div class="row justify-content-center">
+                <div class="col">
+                    <a href="#freeshippingc" class="btn btn-warning mx-3 me-3 categ freeshippingb" onclick="freeShipping()">Free Shipping</a>
+                    <a href="#kidsc" class="btn btn-secondary mx-3 me-3 categ kidsb" onclick="forKids()">For Kids</a>
+                    <a href="#womenc" class="btn btn-secondary mx-3 me-3 categ womenb" onclick="forWomen()">For Women</a>
+                    <a href="#menc" class="btn btn-secondary mx-3 me-3 categ menb" onclick="forMen()">For Men</a>
+                    <a href="#happsc" class="btn btn-warning mx-3 me-3 categ otherb" onclick="homeAppliances()">Home Appliances & Gadgets</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="acategs">
+
+        <div class="cath">
+            <p class="poppins-semibold"> Recommended</p>
+        <div class="container mt-3">
+            <div class="cardcon">
+                <div class="col">   
+                    <div class="card">
+                        <img src="1g.jpg" class="card-img-top" alt="TV">
+                        <div class="card-body">
+                            <h5 class="card-title">Samsung SMART TV</h5>
+                            <p class="card-text">Php 12,555.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order,'Samsung SMART TV', 12550)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="3w.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Kuromi Slippers</h5>
+                            <p class="card-text">Php 217.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order,'Kuromi Slippers', 217)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="2m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Wrist Watch</h5>
+                            <p class="card-text">Php 1,371.40</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Leather Wrist Watch', 1371.40)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="1w.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Pastel Butterfly Necklace</h5>
+                            <p class="card-text">Php 154.07</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Pastel Butterfly Necklace', 154.07)">Add to cart</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="3m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Stretch Chinos</h5>
+                            <p class="card-text">Php 2,150.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Stretch Chinos', 2150.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="2w.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Claw Clips Set</h5>
+                            <p class="card-text">Php 117.09</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Claw Clip', 117.09)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="1m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Dress Shoes</h5>
+                            <p class="card-text">Php 4,773.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Leather Dress Shoes', 4773.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="13g.png" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Beats Studio Pro Wireless Headphones</h5>
+                            <p class="card-text">Php 18,990.00</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Beats Studio Pro Wireless Headphones', 18990.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="12g.png" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">ZONKO Tablet 10.1 Inch Android 32GB Storage Dual Sim Card 5MP...</h5>
+                            <p class="card-text">Php 9,825.00</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'ZONKO 10.1 inch Android Tablet', 9825.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    
+        <div class="cath fs" id="freeshippingc">
+            <p class="poppins-semibold"> Free Shipping</p>
+        <div class="container mt-3">
+            <div class="cardcon">
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="5m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">White Tees</h5>
+                            <p class="card-text">Php 217.77</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'White T-Shirts', 217.77)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="5w.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title"> Pink & Gold Earrings Set [5 pairs]</h5>
+                            <p class="card-text">Php 136.39</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Earrings Set', 146.39)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="12g.png" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">ZONKO Tablet 10.1 Inch Android 32GB Storage Dual Sim Card 5MP...</h5>
+                            <p class="card-text">Php 9,825.00</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'ZONKO 10.1 inch Android Tablet', 9825.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="1k.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Dinosaur Pajamas</h5>
+                            <p class="card-text">Php 122.00</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Dinosaur Pajamas', 122.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="13g.png" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Beats Studio Pro Wireless Headphones</h5>
+                            <p class="card-text">Php 18,990.00</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Beats Studio Pro Wireless Headphones', 18990.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="2m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Wrist Watch</h5>
+                            <p class="card-text">Php 1,371.40</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Leather Wrist Watch', 1371.40)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    
+        <div class="cath" id="kidsc">
+            <p class="poppins-semibold"> For Kids</p>
+        <div class="container mt-3">
+            <div class="cardcon">
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="1k.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Dinosaur Pajamas</h5>
+                            <p class="card-text">Php 122.00</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Dinosaur Pajamas', 122.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="2k.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Baby Doll Nursery Playset</h5>
+                            <p class="card-text">Php 749.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Baby Doll Nursery Playset', 749.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="3k.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Santa Pop Fidget Game Toy</h5>
+                            <p class="card-text">Php 94.99</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Santa Pop Fidget Game Toy', 94.99)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="4k.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Spider Man Crocs</h5>
+                            <p class="card-text">Php 347.19</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Spider Man Crocs', 347.19)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="5k.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Frozen Umbrella</h5>
+                            <p class="card-text">Php 499.49</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Frozen Umbrella', 499.49)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="6k.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Marvel Avengers Socks</h5>
+                            <p class="card-text">Php 67.99</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Marvel Avengers Socks', 67.99)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    
+        <div class="cath" id="womenc">
+            <p class="poppins-semibold"> For Women</p>
+        <div class="container mt-3">
+            <div class="cardcon">
+                <div class="col">   
+                    <div class="card">
+                        <img src="1w.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Pastel Butterfly Necklace</h5>
+                            <p class="card-text">Php 154.07</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Pastel Butterfly Necklace', 154.07)">Add to cart</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="2w.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Claw Clips Set</h5>
+                            <p class="card-text">Php 117.09</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Claw Clip', 117.09)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="3w.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Kuromi Slippers</h5>
+                            <p class="card-text">Php 217.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order,'Kuromi Slippers', 217)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="4w.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Green Floral Dress</h5>
+                            <p class="card-text">Php 479.49</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Green Floral Dress', 479.49)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="5w.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title"> Pink & Gold Earrings Set [5 pairs]</h5>
+                            <p class="card-text">Php 136.39</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Earrings Set', 146.39)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="6w.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Pink Heart Printed Tote bag</h5>
+                            <p class="card-text">Php 99.29</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Heart Tote Bag', 99.29)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    
+        <div class="cath" id="menc">
+            <p class="poppins-semibold"> For Men</p>
+        <div class="container mt-3">
+            <div class="cardcon">
+                <div class="col">   
+                    <div class="card">
+                        <img src="1m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Dress Shoes</h5>
+                            <p class="card-text">Php 4,773.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Leather Dress Shoes', 4773.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="2m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Wrist Watch</h5>
+                            <p class="card-text">Php 1,371.40</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Leather Wrist Watch', 1371.40)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="3m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Stretch Chinos</h5>
+                            <p class="card-text">Php 2,150.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Stretch Chinos', 2150.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="4m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Beard Trimmer</h5>
+                            <p class="card-text">Php 2,199.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Beard Trimmer', 2199.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="5m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">White Tees</h5>
+                            <p class="card-text">Php 217.77</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'White T-Shirts', 217.77)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="6m.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Hair Wax</h5>
+                            <p class="card-text">Php 122.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Hair Wax', 122.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    
+        <div class="cath" id="happsc">
+            <p class="poppins-semibold"> Home Appliances & Gadgets</p>
+        <div class="container mt-3">
+            <div class="cardcon">
+                <div class="col">   
+                    <div class="card">
+                        <img src="1g.jpg" class="card-img-top" alt="TV">
+                        <div class="card-body">
+                            <h5 class="card-title">Samsung SMART TV</h5>
+                            <p class="card-text">Php 12,555.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order,'Samsung SMART TV', 12550)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="2g.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">American Heritage 1.5HP Split Type Air Conditioner Non-inverter AHAC-ST15HP</h5>
+                            <p class="card-text">Php 17,249.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'American Heritage Air Conditioner AHAC-ST15HP', 17249.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="3g.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Microwave Oven Boston Bay GA MOBG-0520LA/23L DIGITAL SILVER</h5>
+                            <p class="card-text">Php 5,915.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Microwave Oven Boston Bay GA MOBG-0520LA/23L Silver', 5915.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="4g.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Midea 13kg Twin Tub Washing Machine </h5>
+                            <p class="card-text">Php 12,555.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Midea 13kg Twin Tub Washing Machine', 12555.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="5g.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Krib Bling 3.5cu.ft Compact 2-Door Fridge with Freezer</h5>
+                            <p class="card-text">Php 16,588.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Krib Bling Refridgerator with Freezer', 16588.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="6g.jpg" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">KW-1362 1.7L Stainless Kyowa Electric Kettle</h5>
+                            <p class="card-text">Php </p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'KW-1362 1.7L Stainless Kyowa Electric Kettle', 750.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="11g.png" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Oppo Reno5 Pro 5G 6.55" 128GB 256GB 64MP Octa Core Android 11 Phone</h5>
+                            <p class="card-text">Php 32,768.22</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'Oppo Reno5 Pro', 32768.22)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="12g.png" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">ZONKO Tablet 10.1 Inch Android 32GB Storage Dual Sim Card 5MP...</h5>
+                            <p class="card-text">Php 9,825.00</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'ZONKO 10.1 inch Android Tablet', 9825.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col fs">   
+                    <div class="card">
+                        <img src="13g.png" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">Beats Studio Pro Wireless Headphones</h5>
+                            <p class="card-text">Php 18,990.00</p>
+                            <button class="btn btn-warning btn-fs" onclick="additem(cust_order, 'Beats Studio Pro Wireless Headphones', 18990.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">   
+                    <div class="card">
+                        <img src="14g.png" class="card-img-top" alt="images/">
+                        <div class="card-body">
+                            <h5 class="card-title">HIMAmonkey Smartwatch, Bluetooth, Touch Screen, Waterproof, Fitness Tracker...</h5>
+                            <p class="card-text">Php 1,856.00</p>
+                            <button class="btn btn-primary btn-add" onclick="additem(cust_order, 'HIMAmonkey Smartwatch', 1856.00)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <div class="cartbdy" id="cartdeliv">
+        <div class="cartitms">
+            <h1 class="poppins-semibold" style="color: #fff6ce;">Cart</h1>
+            <div class="cartcnt container-fluid">
+                <div class="card">
+                    <div class="card-body cartcard">
+                        <ul class="list-group list-group-flush" id="cartitmlist"> <li> Your cart is empty. </li></ul>
+                    </div>
+                  </div>
+            </div>
+        </div>
+      
+        <div class=" dtls">
+            <h1 class="poppins-semibold" style="color: #d0edff;">Delivery Details</h1>
+                <div class="container-fluid dtlcnt">
+                    <div class="card">
+                        <div class="card-body dtlelem">
+                          <form action="http://sirjm.infinityfreeapp.com/checkout.php" method="GET">
+                            <div class="row">
+                    
+                              <div class="col-md-6">
+                                <label for="cust_name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="cust_name" name="cust_name" placeholder="First Name  Last Name">
+                              </div>
+                    
+                              <div class="col-md-6">
+                                <label for="cust_email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="cust_email" name="cust_email" placeholder="name@example.com">
+                              </div>
+                    
+                            </div>
+                    
+                            <div class="col-12">
+                              <label for="cust_addr" class="form-label">Address</label>
+                              <input type="text" class="form-control" id="cust_addr" name="cust_addr" placeholder="Region, Province, City/Municipality, etc.">
+                            </div>
+                            <div class="visually-hidden-focusable">
+                                <input type="text" class="form-control" id="orderstrng" name="cust_order">
+                            </div>
+                            <div class="col-12">
+                              <button type="submit" class="btn btn-primary btn-dark">Checkout</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                </div>
+        </div>
+    </div>
+
+    </div>
+</body>
+</html>

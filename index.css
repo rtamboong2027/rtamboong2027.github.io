@@ -1,0 +1,326 @@
+html
+{
+    scroll-behavior: smooth;
+}
+body 
+{
+    background-color: #F1F3F4;
+    overflow-x: hidden;
+}
+.poppins-semibold
+{
+    margin-top: 7vh;
+    margin-left: 3vw;
+    font-size: 4em;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+.all
+{
+    margin: 0%;
+    padding: 0%;
+}
+.stcky
+{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.navbar
+{
+    background-color: #203856;
+    color: white;
+    height: 5em;
+    border-top: solid 1em #203856;
+    padding-bottom: 1em;
+    z-index: 4;
+}
+.navbar-brand, .crtb, .tglb
+{
+    margin-top: -0.5em;
+}
+.mininavbar
+{
+    background-color: #203856;
+    border-radius: 0em 0em 2em 2em;
+    border-left: solid 0.5em #203856;
+    border-right: solid 0.5em #203856;
+    border-bottom: solid 1em #203856;
+}
+.card
+{
+    min-width: 20em;
+    min-height: 24em;
+    max-height: 32em;
+    margin-left: 1em;
+    margin-right: 1em;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(254, 254, 254, 0.8);
+}
+.card img
+{
+    border-bottom: solid 5px #ADA9A5;
+    background-color: #ccc;
+}
+.card:hover
+{
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgb(81, 88, 97);
+}
+.card:not(:hover)
+{
+    transform: translateY(0);
+    box-shadow: none;
+}
+.suggestions-container
+{
+    position: relative;
+    width: 300px;
+}
+#searchInput
+{
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+}
+#searchResults
+{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    z-index: 1;
+}
+#searchResults li
+{
+    padding: 8px;
+    cursor: pointer;
+}
+#searchResults li:hover
+{
+    background-color: #f1f1f1;
+}
+.categ
+{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    border-radius: 4em;
+    outline: solid 1px white;
+}
+.cardcon
+{
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    justify-content: space-around;
+    max-height: 36em;
+    padding-bottom: 3em;
+}
+.btn-add
+{
+    background-color: #62AEDC;
+    border-color: #62AEDC;
+    border-radius: 2em;
+}
+.srchb
+{
+    background-color: #ffdc4284;
+    border-color: #FFDB42;
+    color: rgb(255, 255, 255);
+    border-radius: 4em;
+}
+.crtb
+{
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: #EF8211;
+    border-color: #EF8211;
+    color: rgb(255, 255, 255);
+    border-radius: 1em;
+}
+.freeshippingb
+{
+    background-color: #EF8211;
+    border-color: #EF8211;
+}
+.kidsb
+{
+    background-color: #FFDB42;
+    border-color: #FFDB42;
+    color: rgb(38, 37, 35);
+}
+.womenb
+{
+    background-color: #62AEDC;
+    border-color: #62AEDC;
+    color: rgb(38, 37, 35);
+}
+.menb
+{
+    background-color: #203856;
+    border-color: #203856;
+}
+.otherb
+{
+    background-color: #ADA9A5;
+    border-color: #ADA9A5;
+    color: rgb(38, 37, 35);
+}
+.acategs
+{
+    display: flex;
+    flex-direction: column;
+
+}
+.cath
+{
+    margin-bottom: 3em;
+}
+.btn-fs
+{
+    background-color: #EF8211;
+    border-color: #EF8211;
+    border-radius: 2em;
+    color: white;
+}
+.fs .card
+{
+    background-color: #fff8e4;
+}
+#freeshippingc
+{
+    display: none;
+    flex-direction: column;
+}
+#kidsc
+{
+    display: none;
+    flex-direction: column;
+}
+#womenc
+{
+    display: none;
+    flex-direction: column;
+}
+#menc
+{
+    display: none;
+    flex-direction: column;
+}
+#happsc
+{
+    display: none;
+    flex-direction: column;
+}
+.Itmnam
+{
+    font-size: 1.5em;
+    font-weight: 500;
+}
+ul
+{
+    list-style-type: none;
+}
+.cartbdy
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 8em;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-bottom: 6em;
+    background-color: #203856;
+    border-top: solid 0.3em #EF8211;
+    outline: solid 1.2em #203856;
+}
+.cartbdy .card
+{
+    background-color: whitesmoke;
+}
+.cartcnt
+{
+    min-width: 20vw;
+}
+.cartitms .card
+{
+    width: fit-content;
+}
+.cartcard
+{
+    overflow-y: scroll;
+}
+.itemcont
+{
+    display: flex;
+    flex-direction: column;
+}
+.botctim
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.btn-rmv
+{
+    border: none;
+    background-color: #ffffff00;
+    color: #EF8211;
+}
+.dtls
+{
+    display: flex;
+    flex-direction: column;
+}
+.cartitms
+{
+    min-width: 20vw;
+    min-height: 20em;
+}
+.dtlcnt
+{
+    min-width: 55vw;
+    min-height: 20em;
+}
+.dtls .card
+{
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    height: auto;
+}
+.dtls .card:hover
+{
+    transform: translateY(0);
+    box-shadow: none;
+}
+.dtlelem
+{
+    margin: 2em;
+}
+.dtlelem div
+{
+    min-width: 18em;
+    margin-bottom: 1em;
+}
+.dtlelem button
+{
+    margin-top: 1em;
+}
+.btn-dark
+{
+    background-color: #62AEDC;
+    border-color: #62AEDC;
+    border-radius: 4em;
+}
